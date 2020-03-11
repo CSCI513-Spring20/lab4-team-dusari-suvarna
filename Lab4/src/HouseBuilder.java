@@ -10,23 +10,26 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 public class HouseBuilder extends Application{
 	
-	HouseArea house;
+	HouseEntity house;
+	HouseFactory furnitureFactory = new FurnitureFactory();
 	/**
 	 * Manually construct a house
 	 */
 	public void buildHouse(){
-		Furniture block1 = new Furniture("Sink");
-        Furniture block2 = new Furniture("Counter");
-        Furniture block3 = new Furniture("Bed");
-        Furniture block4 = new Furniture("Dresser");
-        Furniture block5 = new Furniture("Bathtub");
-
+		HouseEntity block1 = furnitureFactory.createHouse("Sink");
+		HouseEntity block2 = furnitureFactory.createHouse("Counter");
+		HouseEntity block3 = furnitureFactory.createHouse("Bed");
+		HouseEntity block4 = furnitureFactory.createHouse("Dresser");
+		HouseEntity block5 = furnitureFactory.createHouse("Bathtub");
+		
+		HouseFactory areaFactory = new HouseAreaFactory();
         //Initialize composite structures
-        HouseArea structure = new HouseArea("Kitchen");
-        HouseArea structure1 = new HouseArea("Bedroom");
-        HouseArea structure2 = new HouseArea("Bathroom");
-        HouseArea structure3 = new HouseArea("Downstairs");
-        HouseArea structure4 = new HouseArea("Upstairs");
+		HouseEntity structure = areaFactory.createHouse("Kitchen");
+		HouseEntity structure1 = areaFactory.createHouse("Bedroom");
+		HouseEntity structure2 = areaFactory.createHouse("Bathroom");
+		HouseEntity structure3 = areaFactory.createHouse("Downstairs");
+		HouseEntity structure4 = areaFactory.createHouse("Upstairs");
+
         house = new HouseArea("House");
         
         //Build the house
@@ -69,7 +72,7 @@ public class HouseBuilder extends Application{
 		house.listHouseSpecs(0);
 	}
 	
-	public HouseArea getHouse(){
+	public HouseEntity getHouse(){
 		return house;
 	}
 	
